@@ -1,0 +1,375 @@
+/* This function is used to show which course li is active currently */
+function course_activate_li(page_li_id) {
+	switch (page_li_id) {
+		case 'course_content_li':
+			$('#course_nav div.course-active').removeClass('course-active');
+			$('#course_content_li').addClass('course-active');
+			break;
+
+		case 'course_details_li':
+			$('#course_nav div.course-active').removeClass('course-active');
+			$('#course_details_li').addClass('course-active');
+			break;
+
+		case 'key_features_li':
+			$('#course_nav div.course-active').removeClass('course-active');
+			$('#key_features_li').addClass('course-active');
+			break;
+
+		case 'reviews_li':
+			$('#course_nav div.course-active').removeClass('course-active');
+			$('#reviews_li').addClass('course-active');
+			break;
+
+		case 'faqs_li':
+			$('#course_nav div.course-active').removeClass('course-active');
+			$('#faqs_li').addClass('course-active');
+			break;
+	}
+
+}
+
+/* This function is used to show which DMAD li is active currently */
+function dmad_activate_li(page_li_id) {
+	switch (page_li_id) {
+		case 'dmad_objective_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_objective_li').addClass('dmad-active');
+			break;
+
+		case 'dmad_course_module_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_course_module_li').addClass('dmad-active');
+			break;
+
+		case 'dmad_target_audience_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_target_audience_li').addClass('dmad-active');
+			break;
+
+		case 'dmad_course_highlights_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_course_highlights_li').addClass('dmad-active');
+			break;
+
+		case 'dmad_facilities_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_facilities_li').addClass('dmad-active');
+			break;
+
+		case 'dmad_placements_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_placements_li').addClass('dmad-active');
+			break;
+
+	}
+
+}
+
+function corporate_activate_li(page_li_id) {
+	switch (page_li_id) {
+
+		case 'dmad_placements_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_placements_li').addClass('dmad-active');
+			break;
+
+		case 'dmad_target_audience_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_target_audience_li').addClass('dmad-active');
+			break;
+
+		case 'corporate_technologies_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#dmad_objective_li').addClass('dmad-active');
+			break;
+
+		case 'corporate_recruitment_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#corporate_recruitment_li').addClass('dmad-active');
+			break;
+
+		case 'corporate_outsourcing_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#corporate_outsourcing_li').addClass('dmad-active');
+			break;
+
+		case 'corporate_bitcode_profile_li':
+			$('#dmad_nav div.dmad-active').removeClass('dmad-active');
+			$('#corporate_bitcode_profile_li').addClass('dmad-active');
+			break;
+
+	}
+
+}
+
+/* This function is used to show which page is active currently */
+function activate_li(page_li_id) {
+	switch (page_li_id) {
+		case 'index_li':
+			$('#mainav li.active').removeClass('active');
+			$('#index_li').addClass('active');
+			break;
+
+		case 'course_li':
+			$('#mainav li.active').removeClass('active');
+			$('#course_li').addClass('active');
+			course_activate_li('course_content_li');
+			break;
+
+		case 'dmad_li':
+			$('#mainav li.active').removeClass('active');
+			$('#dmad_li').addClass('active');
+			dmad_activate_li('dmad_objective_li');
+			break;
+
+		case 'schedule_li':
+			$('#mainav li.active').removeClass('active');
+			$('#schedule_li').addClass('active');
+			break;
+
+		case 'clients_li':
+			$('#mainav li.active').removeClass('active');
+			$('#clients_li').addClass('active');
+			break;
+
+		case 'corporate_li':
+			$('#mainav li.active').removeClass('active');
+			$('#corporate_li').addClass('active');
+			break;
+
+		case 'placements_li':
+			$('#mainav li.active').removeClass('active');
+			$('#placements_li').addClass('active');
+			break;
+
+		case 'contact_li':
+			$('#mainav li.active').removeClass('active');
+			$('#contact_li').addClass('active');
+			break;
+	}
+
+}
+
+function autoType(elementClass, typingSpeed) {
+	var thhis = $(elementClass);
+	thhis.css({
+		"position": "relative",
+		"display": "inline-block"
+	});
+	thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+	thhis = thhis.find(".text-js");
+	// var text = thhis.text().trim().split('');
+	var text = thhis.html();
+	var amntOfChars = text.length;
+	var newString = "";
+	thhis.text("|");
+	setTimeout(function () {
+		thhis.css("opacity", 1);
+		thhis.prev().removeAttr("style");
+		thhis.text("");
+		for (var i = 0; i < amntOfChars; i++) {
+			(function (i, char) {
+				setTimeout(function () {
+					if (char == " ") {
+						newString += ' <span class="fa fa-circle" aria-hidden="true"></span>';
+					}
+					newString += char;
+					thhis.html(newString);
+
+					if (i == amntOfChars) {
+						$("div.cursor").css("display", "none");
+						$("#android_training_paragraph").css("display", "inline");
+					}
+				}, i * typingSpeed);
+			})(i + 1, text[i]);
+		}
+	}, 500);
+}
+
+var overlay_nav_flag = 0;
+var hover_flag = 0;
+var counter_div_flag = 0;
+
+function openNav() {
+	overlay_nav_flag = 1;
+	var width = $(window).width();
+	// alert(width);
+	if (width > 480 && width <= 1366) {
+		document.getElementById("overlay_nav").style.width = "20%";
+		$(".carousel-indicators").css("z-index", "0");
+	}
+
+	if (width <= 480) {
+		document.getElementById("overlay_nav").style.width = "100%";
+		$(".carousel-indicators").css("z-index", "0");
+	}
+
+	if (width >= 1900) {
+		document.getElementById("overlay_nav").style.width = "20%";
+		$(".carousel-indicators").css("z-index", "0");
+	}
+
+}
+
+function closeNav() {
+	overlay_nav_flag = 0;
+	document.getElementById("overlay_nav").style.width = "0%";
+	$(".carousel-indicators").css("z-index", "15");
+}
+
+function openCoursesDropdown() {
+	hover_flag = 1;
+	$(".course-dropdown").css('display', 'inline');
+}
+
+function closeCoursesDropdown() {
+	if ($(".course-dropdown:hover").length == 0) {
+		hover_flag = 0;
+		$(".course-dropdown").css('display', 'none');
+	}
+}
+
+function animate_numbers() {
+
+	counter_div_flag = 1;
+	$('#faucibus_count').each(function () {
+		$(this).prop('Counter', 0).animate({
+			Counter: $(this).text()
+		}, {
+				duration: 2500,
+				easing: 'swing',
+				step: function (now) {
+					$(this).text(Math.ceil(now));
+				}
+			});
+	});
+
+	$('#pellentesque_count').each(function () {
+		$(this).prop('Counter', 0).animate({
+			Counter: $(this).text()
+		}, {
+				duration: 2500,
+				easing: 'swing',
+				step: function (now) {
+					$(this).text(Math.ceil(now));
+				}
+			});
+	});
+
+	$('#hendrerit').each(function () {
+		$(this).prop('Counter', 0).animate({
+			Counter: $(this).text()
+		}, {
+				duration: 2500,
+				easing: 'swing',
+				step: function (now) {
+					$(this).text(Math.ceil(now));
+				}
+			});
+	});
+
+	$('#venenatis').each(function () {
+		$(this).prop('Counter', 0).animate({
+			Counter: $(this).text()
+		}, {
+				duration: 2500,
+				easing: 'swing',
+				step: function (now) {
+					$(this).text(Math.ceil(now));
+				}
+			});
+	});
+}
+
+// $(document).ready(function() {
+
+// });
+
+// When the user clicks anywhere outside of the nav, close it
+$(document).click(function (e) {
+	width = $("#overlay_nav").width();
+	if (overlay_nav_flag == 1 && e.target.id != 'menu_icon') {
+		if (e.target.id != 'overlay_nav' && width > 0 && e.target.id != '') {
+			// alert(e.target.id);
+			closeNav();
+		}
+	}
+
+	if (hover_flag == 1 && e.target.id != 'course_li') {
+		closeCoursesDropdown();
+	}
+
+	// $('#mainav li').click(function(){
+	// 	// alert('clicked');
+	// 	$(this).siblings().removeClass('active');
+	// 	$(this).addClass('active');
+	// });
+
+});
+
+$(document).scroll(function () {
+	if (overlay_nav_flag == 1) {
+		closeNav();
+	}
+});
+
+// Function for map start
+function load_map() {
+	var map;
+	var bounds = new google.maps.LatLngBounds();
+	var mapOptions = {
+		mapTypeId: 'roadmap'
+	};
+	map = new google.maps.Map(document.getElementById("map_view"), mapOptions);
+
+	// Multiple markers location, latitude, and longitude
+	map.setTilt(50);
+	var markers = [];
+	var infoWindowContent = [];
+	var school_marker = [];
+	var request = {
+		travelMode: google.maps.TravelMode.DRIVING
+	};
+	var string = [];
+	position = "";
+	marker = "";
+	var branch_info = [];
+	branch_info.push("<div style='color: #000;font-family:\"Montserrat\", sans-serif;'><div style='font-weight:500;margin-bottom:10px;'>Bitcode Technologies</div>1<sup>st</sup> and 3<sup>rd</sup> floor, Bhosale House,<br> Nal Stop Karve Road,<br> Next to Kalyan Jewellers,<br> Erandwane, Pune - 411004.<br> India.</div>");
+
+	branch_info.push("<div style='color: #000;font-family:\"Montserrat\", sans-serif;''><div style='font-weight:500;margin-bottom:10px;'>Bitcode Technologies</div>2<sup>nd</sup> floor, Vishva Arcade, <br>Above Honda Showroom <br> Navle Bridge, <br> Narhe, Sinhgad Road,<br> India.</div>");
+
+	var brach_marker = [{ 'latitude': 18.509119, 'longitude': 73.832645 }, { latitude: 18.459509, 'longitude': 73.823331 }];
+	for (var i = 0; i < brach_marker.length; i++) {
+		var infoWindow = new google.maps.InfoWindow(), marker, a;
+		var position = new google.maps.LatLng(brach_marker[i].latitude, brach_marker[i].longitude);
+		bounds.extend(position);
+		marker = new google.maps.Marker({
+			position: position,
+			map: map,
+			title: ""
+		});
+		google.maps.event.addListener(marker, 'click', (function (marker, i) {
+			return function () {
+				infoWindow.setContent(branch_info[i]);
+				infoWindow.open(map, marker);
+				window.open("https://www.google.com/maps/?q=" + brach_marker[i].latitude + "," + brach_marker[i].longitude, "_blank");
+			}
+		})(marker, i));
+		infoWindow.setContent(branch_info[i]);
+		infoWindow.open(map, marker);
+		map.fitBounds(bounds);
+	}
+	google.maps.event.addListener(map, 'zoom_changed', function () {
+		zoomChangeBoundsListener = google.maps.event.addListener(map, 'bounds_changed', function (event) {
+			if (this.getZoom() > 15 && this.initialZoom == true) {
+				// Change max/min zoom here
+				this.setZoom(15);
+				this.initialZoom = false;
+			}
+			google.maps.event.removeListener(zoomChangeBoundsListener);
+		});
+	});
+	map.initialZoom = true;
+}
+// Function for map end
